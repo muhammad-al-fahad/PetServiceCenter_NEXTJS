@@ -1,0 +1,29 @@
+.membership {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.membership .card {
+    margin: 10px auto;
+}
+
+.membership .card-img-top {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.membership .card-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.membership .card-text {
+    height: 70px;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}

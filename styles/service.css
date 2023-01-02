@@ -1,0 +1,14 @@
+.dropresult-item {
+    display: block;
+    margin-top: -28px;
+    margin-left: -218px;
+    position: absolute;
+    border: 1px solid rgba(158, 154, 154, 0.5);
+    background-color: white;
+    display: none;
+    width: 200px;
+  }
+  
+  .dropresult:hover .dropresult-item {
+    display: block;
+  }
