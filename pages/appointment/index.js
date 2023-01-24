@@ -209,7 +209,7 @@ const Appointment = (props) => {
                                     : auth.user.role === 'operator' ? <div className='d-flex mx-2'>
                                         {
                                             appoint.bill ?
-                                            <td className='mt-2 mx-5'><i className='far fa-check-circle text-success'></i></td> : <td className='mt-2 mx-2'><button className='btn btn-dark'><Link href={`/bills?appoint=${appoint._id}`}> Bill Generate </Link></button></td>
+                                            <td className='mt-2 mx-5'><i className='far fa-check-circle text-success'></i></td> : <td className='mt-2 mx-2'><button className='btn btn-dark'><Link href={`/bills?appoint=${appoint._id}`}> Generate </Link></button></td>
                                         }
                                     </div>
                                     : <div className='d-flex mx-2'>

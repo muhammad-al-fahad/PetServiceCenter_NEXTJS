@@ -35,7 +35,7 @@ const CreateOffer = (props) => {
    const {id} = router.query
 
    const {state, dispatch} = useContext(DataContext)
-   const {auth, offers} = state
+   const {auth} = state
 
    useEffect(() => {
       setProducts(props.products)
@@ -254,7 +254,7 @@ const CreateOffer = (props) => {
                products.length === 0 ?
                <h2> No Products </h2> :
                products.map(product_01 => (
-                  <Items key={product_01._id} product={product_01} Check={Check}/>
+                  <Items key={product_01._id} product={product_01} Check={Check} id={id ? id : ''}/>
                ))
             }
             </div>

@@ -17,7 +17,7 @@ const getPet = async (req, res) => {
        const result = await auth(req, res)
         
        let pet;
-       if(result.role === 'user' && result.role === 'membership'){
+       if(result.role === 'user' || result.role === 'membership'){
             pet = await Pets.find({userId: result.id})
        }else {
             pet = await Pets.find()

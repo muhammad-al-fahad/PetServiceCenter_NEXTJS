@@ -106,7 +106,7 @@ const Items = ({product, validate, Check}) => {
                     }
                     {
                         valid && valid.map(v => (
-                            product._id === v._id && <h6 className="text-danger mx-4" style={{flex:1}}> ${product.price}</h6>
+                            product._id === v._id && auth.user && <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
                         ))
                     }
                     {

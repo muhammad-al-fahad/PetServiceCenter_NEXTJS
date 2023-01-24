@@ -26,7 +26,7 @@ const Home = () => {
     const [timeData, setTimeData] = useState([])
 
     const { timing, date, pet, service, doctor } = appoint
-    const { auth, pets, timings, appointments, services, doctors, offers, member, modal } = state
+    const { auth, pets, timings, appointments, services, doctors, offers, member } = state
 
     const router = useRouter()
     const [detail, setDetail] = useState('')

@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    "BASE_URL": "https://pet-service-center-nextjs.vercel.app",
+    "BASE_URL": "http://localhost:3000",
     "MONGODB_URL": "mongodb+srv://Muhammad-Al-Fahad:software12@cluster0.tyvkder.mongodb.net/Pet's?retryWrites=true&w=majority",
     "ACTIVATION_TOKEN": "software12api1209971.118042899",
     "ACCESS_TOKEN": "software12key4997351.138861893",

@@ -1,23 +1,31 @@
 import Head from 'next/head'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { getData } from '../../utils/fetchData'
 import { DataContext } from '../../redux/store'
 import { addToCart } from '../../redux/action'
 
 const DetailProduct = (props) => {
      const [product, setProduct] = useState(props.product)
-
+     const [valid, setValid] = useState('')
      const [tab, setTab] = useState(0)
 
      const {state, dispatch} = useContext(DataContext)
      const { offers, cart, auth } = state
+
+     useEffect(() => {
+        offers.map(off => {
+          off.products.filter(pro => {
+            if(pro._id === product._id) setValid(product._id)
+          })
+        })
+      }, [offers])
 
     const isActive = (index) => {
       if(tab === index) return "active";
       return ""
     }
 
-    if(!auth.user) return null
+    // if(!auth.user) return null
     return (
         <div className='row detail_page justify-content-center'>
             <Head>
@@ -57,6 +65,16 @@ const DetailProduct = (props) => {
                       auth.user && auth.user.role === 'membership' && auth.user.membership === off.category && off.duration === "0" &&
                       <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
                 ))
+              }
+              {
+                  valid !== product._id && auth.user && <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
+              }
+              {
+                  !auth.user && <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
+              }
+              {
+                auth.user && auth.user.role !== 'membership' &&
+                <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
               }
               <div className='row d-flex justify-content-between'>
                 {

@@ -1,16 +1,35 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { DataContext } from '../../redux/store'
 
-const Items = ({product, Check}) => {
+const Items = ({product, Check, id}) => {
 
     const {state, dispatch} = useContext(DataContext)
-    const { auth} = state
+    const { auth, offers } = state
+    const [discount, setDiscount] = useState('')
+
+    console.log(id)
+
+    useEffect(() => {
+        offers.map(off => {
+            off.products.forEach(pro => {
+                if(product._id === pro._id) setDiscount(pro._id)
+            })
+        })
+    }, [offers])
 
     return(
         <div className="card mx-4" style={{width: '20rem'}}>
             {
-                auth.user && auth.user.role === 'admin' &&
-                <input type='checkbox' checked={product.checked} className='position-absolute' style={{width: '20px', height: '20px'}} onChange={() => Check(product._id)}/>
+                auth.user && auth.user.role === 'admin' && product._id !== discount && !id &&
+                    <input type='checkbox' checked={product.checked} className='position-absolute' style={{width: '20px', height: '20px'}} onChange={() => Check(product._id)}/>
+            }
+            {
+                auth.user && auth.user.role === 'admin' && id &&
+                    <input type='checkbox' checked={product.checked} className='position-absolute' style={{width: '20px', height: '20px'}} onChange={() => Check(product._id)}/>
+            }
+            {
+                auth.user && auth.user.role === 'admin' && product._id === discount && !id &&
+                    <em className='position-absolute text-capitalize text-light bg-dark px-4 py-2' style={{height: '40px', borderRadius: '20px', marginTop: '5%', marginLeft: '20%'}}>* Already In Offer *</em>
             }
             <img src={product.images[0].url} className = "card-img-top" alt = {product.images[0].url}/>
             <div className="card-body">

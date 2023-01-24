@@ -28,11 +28,13 @@ const Cart = () => {
     }, [auth.user])
 
   const Payment = async () => {
-    if(!address || !number){
-      return dispatch({type: 'NOTIFY', payload: {error: "Please Fill Your Shipping Form!"}})
-    } else if(!auth.user){
+
+    if(!auth.user){
       return dispatch({type: 'NOTIFY', payload: {error: "Please Login!"}})
+    } else if(!address || !number){
+      return dispatch({type: 'NOTIFY', payload: {error: "Please Fill Your Shipping Form!"}})
     }
+    
 
     let newCart = []
     for(const item of cart){
@@ -77,7 +79,7 @@ const Cart = () => {
        const {_id, title, images, inStock, membership, price, discount, sold} = res.product
 
         if(inStock > 0){
-            resp.push({_id, title, images, inStock, price: auth.user.role === 'membership' && auth.user.membership === membership ? discount : price, sold, quantity: item.quantity > inStock ? 1 : item.quantity})
+            resp.push({_id, title, images, inStock, price: auth.user && auth.user.role === 'membership' && auth.user.membership === membership ? discount : !auth.user ? price : price, sold, quantity: item.quantity > inStock ? 1 : item.quantity})
         }
     }
     dispatch({type: 'ADD_CART', payload: resp})
@@ -95,7 +97,7 @@ const Cart = () => {
      }
   },[callback])
 
-  if(!auth.user) return null;
+  // if(!auth.user) return null;
   if(cart.length === 0) return <img className='img-responsive w-100' src='/empty_cart.jpg' alt='not empty'/>
   return(
       <div className='row mx-auto'>
