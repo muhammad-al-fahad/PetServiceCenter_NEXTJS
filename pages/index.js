@@ -138,14 +138,14 @@ const Home = () => {
                 <title> Pets Service Center </title>
             </Head>
             <div className = 'appointment'>
-                <h3 className='justify-content-center' style={{fontWeight: 'bold', marginLeft: '40%', padding: '10px', color: 'white', textTransform: 'uppercase'}}> we are here to serve you </h3>
+                <h3 className='pet-title'> we are here to serve you </h3>
                 <div className = 'appoint'>
-                    <p className='description' style={{fontSize: '16px', margin: '30px', width: '800px', color: 'white'}}>
+                    <p className='description'>
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
                     </p>
-                    <img className='image' src='appointment.jpg' alt='for_pet_book_appointment' width='250px' height='250px' style={{margin: '10%', marginTop: '-10px', borderRadius: '50%', objectFit: 'cover'}}/>
+                    <img className='pet-image' src='appointment.jpg' alt='for_pet_book_appointment'/>
                 </div>
-                <button className = 'btn btn-danger w-25' style={{boxShadow: '0 5px 10px rgba(255,0,0,0.5)', marginLeft: '40%', marginTop: '-50px', marginBotton: '30px'}} aria-hidden='true' data-bs-toggle="modal" data-bs-target="#appointmentModal"> Book Appointment </button>
+                <button className = 'btn btn-danger w-25 book-appointment' style={{}} aria-hidden='true' data-bs-toggle="modal" data-bs-target="#appointmentModal"> Book Appointment </button>
             </div>
             <div className="modal fade" id="appointmentModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
@@ -222,27 +222,27 @@ const Home = () => {
                 <h2 className='my-4 col-md-4 offset-md-5 text-uppercase'> Our Services </h2>
                 <div className='services'>
                     <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src='checkup.webp' alt='checkup.webp' width="30%" height="30%" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
+                        <img src='checkup.webp' alt='checkup.webp' width="150px" height="150px" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
                         <h5 className='text-uppercase my-2' style={{ marginLeft: '40px' }}> Checkup </h5>
                         <p style={{ width: '250px' }}>Your Pets Physical Checkup Listening to your animals lungs and heart. Checking your cat or dogs stance, gait, and weight.</p>
                     </div>
                     <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src='treatment.jpg' alt='treatment.jpg' width="30%" height="30%" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
+                        <img src='treatment.jpg' alt='treatment.jpg' width="150px" height="150px" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
                         <h5 className='text-uppercase my-2' style={{ marginLeft: '40px' }}> Treatment </h5>
                         <p style={{ width: '250px' }}>Your Pets treatment have any job that has to do with taking care of pets would be considered a pet care profession.</p>
                     </div>
                     <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src='vaccination.png' alt='vaccination.png' width="30%" height="30%" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
+                        <img src='vaccination.png' alt='vaccination.png' width="150px" height="150px" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
                         <h5 className='text-uppercase my-2' style={{ marginLeft: '40px' }}> Vaccination </h5>
                         <p style={{ width: '250px' }}>Pet vaccinations help protect your pet from diseases and illnesses that could threaten their health immediately and in the future.</p>
                     </div>
                     <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src='diagnostic_test.jpg' alt='diagnostic_test.jpg' width="30%" height="30%" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
+                        <img src='diagnostic_test.jpg' alt='diagnostic_test.jpg' width="150px" height="150px" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
                         <h5 className='text-uppercase my-2' style={{ marginLeft: '30px' }}> Diagnostic Test </h5>
                         <p style={{ width: '250px' }}>X-rays and ultrasound tests can indicate structural problems, injuries and other issues.</p>
                     </div>
                     <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src='home_visit.png' alt='home_visit.png' width="30%" height="30%" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
+                        <img src='home_visit.png' alt='home_visit.png' width="150px" height="150px" style={{ marginLeft: '60px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
                         <h5 className='text-uppercase my-2' style={{ marginLeft: '40px' }}> Home Visit </h5>
                         <p style={{ width: '250px' }}>A Pet Home Visit is where a pet sitter will pop into your home as often as you require, throughout the day.</p>
                     </div>
@@ -251,24 +251,24 @@ const Home = () => {
             </div>
             <div className="d-block">
                 <h2 className='my-4 col-md-4 offset-md-5 text-uppercase'> Our Doctors Team </h2>
-                <div className='grid'>
-                    <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src={doctors.length >= 1 && doctors[0].avatar} alt={doctors.length >= 1 && doctors[0].avatar} width="50%" height="50%" style={{ marginLeft: '45px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
-                        <h4 className='text-uppercase my-2' style={{ marginLeft: '100px' }}> {doctors.length >= 1 && doctors[0].name} </h4>
-                        <h6 className='text-uppercase my-2' style={{ marginLeft: '130px' }}> {doctors.length >= 1 && doctors[0].designation} </h6>
-                        <p style={{ width: '350px', marginLeft: '30px' }}>{doctors.length >= 1 && doctors[0].bio}</p>
+                <div className='doctors-arrangement'>
+                    <div className="d-block" style={{width: '300px', marginLeft: '15px' }}>
+                        <img className='doctor-image' src={doctors.length >= 1 && doctors[0].avatar ? doctors[0].avatar : 'https://res.cloudinary.com/comsats-university-lahore/image/upload/v1659383317/Rehbar%20Pet%27s%20Clinic/profile_tird38.png'} alt={doctors.length >= 1 && doctors[0].avatar ? doctors[0].avatar : 'Loading...'}/>
+                        <h4 className='text-uppercase my-2' style={{ textAlign: 'center' }}> {doctors.length >= 1 && doctors[0].name} </h4>
+                        <h6 className='text-uppercase my-2' style={{ textAlign: 'center' }}> {doctors.length >= 1 && doctors[0].designation} </h6>
+                        <p style={{ textAlign: 'center' }}>{doctors.length >= 1 && doctors[0].bio}</p>
                     </div>
-                    <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src={doctors.length >= 2 && doctors[1].avatar} alt={doctors.length >= 2 && doctors[1].avatar} width="50%" height="50%" style={{ marginLeft: '45px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
-                        <h4 className='text-uppercase my-2' style={{ marginLeft: '100px' }}> {doctors.length >= 2 && doctors[1].name} </h4>
-                        <h6 className='text-uppercase my-2' style={{ marginLeft: '130px' }}> {doctors.length >= 2 && doctors[1].designation} </h6>
-                        <p style={{ width: '350px', marginLeft: '30px' }}>{doctors.length >= 2 && doctors[1].bio}</p>
+                    <div className="d-block" style={{width: '300px', marginLeft: '15px' }}>
+                        <img className='doctor-image' src={doctors.length >= 2 && doctors[1].avatar ? doctors[1].avatar : 'https://res.cloudinary.com/comsats-university-lahore/image/upload/v1659383317/Rehbar%20Pet%27s%20Clinic/profile_tird38.png'} alt={doctors.length >= 2 && doctors[1].avatar ? doctors[1].avatar : 'Loading...'}/>
+                        <h4 className='text-uppercase my-2' style={{ textAlign: 'center' }}> {doctors.length >= 2 && doctors[1].name} </h4>
+                        <h6 className='text-uppercase my-2' style={{ textAlign: 'center' }}> {doctors.length >= 2 && doctors[1].designation} </h6>
+                        <p style={{ textAlign: 'center' }}>{doctors.length >= 2 && doctors[1].bio}</p>
                     </div>
-                    <div className="d-block" style={{ marginLeft: '15px' }}>
-                        <img src={doctors.length >= 3 && doctors[2].avatar} alt={doctors.length >= 3 && doctors[2].avatar} width="50%" height="50%" style={{ marginLeft: '45px', objectFit: 'cover', borderWidth: '1px', borderRadius: '50%' }} />
-                        <h4 className='text-uppercase my-2' style={{ marginLeft: '100px' }}> {doctors.length >= 3 && doctors[2].name} </h4>
-                        <h6 className='text-uppercase my-2' style={{ marginLeft: '130px' }}> {doctors.length >= 3 && doctors[2].designation} </h6>
-                        <p style={{ width: '350px', marginLeft: '30px' }}>{doctors.length >= 3 && doctors[2].bio}</p>
+                    <div className="d-block" style={{width: '300px', marginLeft: '15px' }}>
+                        <img className='doctor-image' src={doctors.length >= 3 && doctors[2].avatar ? doctors[2].avatar : 'https://res.cloudinary.com/comsats-university-lahore/image/upload/v1659383317/Rehbar%20Pet%27s%20Clinic/profile_tird38.png'} alt={doctors.length >= 3 && doctors[2].avatar ? doctors[2].avatar : 'Loading...'}/>
+                        <h4 className='text-uppercase my-2' style={{ textAlign: 'center' }}> {doctors.length >= 3 && doctors[2].name} </h4>
+                        <h6 className='text-uppercase my-2' style={{ textAlign: 'center' }}> {doctors.length >= 3 && doctors[2].designation} </h6>
+                        <p style={{ textAlign: 'center' }}>{doctors.length >= 3 && doctors[2].bio}</p>
                     </div>
                 </div>
                 <button className='btn btn-dark w-25' style={{marginLeft: '30%'}}><Link href="/doctors"><a style={{textDecoration: 'none', color: 'white'}}> View Doctors </a></Link></button>

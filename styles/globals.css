@@ -278,22 +278,72 @@ img{
   }
 }
 
-.services, .doctors, .doctors_link {
+.services, .doctors-arrangement {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pet-image {
+  height: 250px;
+  width: 250px;
+  position: relative;
+  margin-top: -10px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.book-appointment {
+  box-shadow: 0 5px 10px rgba(255,0,0,0.5);
+  margin-left: 40%;
+  margin-top: -50px;
+  margin-bottom: 30px;
+}
+
+.doctors_link, .doctors, .appoint {
   display: flex;
 }
 
-.membership, .appoint {
+.pet-title {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px; 
+  color: white; 
+  text-transform: uppercase;
+}
+
+.membership {
   display: flex;
+}
+
+.description {
+  font-size: 16px;
+  margin: 30px;
+  width: 800px;
+  color: white;
 }
 
 .doctors_link .email {
   margin-left: 30%;
 }
 
+.doctor-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-width: 1px;
+  border-radius: 50%;
+  left: 50%;
+  -ms-transform: translateX(50%);
+  transform: translateX(50%);
+}
+
+/* ------------ Responsive ------------- */
+
 @media only screen and (max-width: 1024px){
-  .services{
-    display: block;
-    margin-left: auto;
+  .book-appointment {
+    margin-top: 30px;
   }
 
   .membership {
@@ -301,21 +351,16 @@ img{
   }
 
   .appoint {
-    display: grid;
-  }
-
-  .appoint .description {
-    width: 100%
-  }
-
-  .appoint .image {
-    margin-left: 40%;
-    margin-bottom: 10%;
-  }
-
-  .services{
     display: block;
-    margin: auto;
+  }
+
+  .pet-image {
+    left: 20%;
+  }
+
+  .description {
+    width: 80%;
+    text-align: center;
   }
 
   .doctors {
@@ -329,7 +374,12 @@ img{
   .doctors_link .email {
     margin-left: 0%;
   }
+
+  .doctors-arrangement {
+    display: block;
+  }
 }
+
 
 /* ------------ Loading ------------- */
 @import url('./loading.css');
@@ -358,5 +408,5 @@ img{
 /*------------- Footer --------------*/
 @import url('./footer.css');
 
-/*------------- Footer --------------*/
+/*------------- Location --------------*/
 @import url('./directions.css');
