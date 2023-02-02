@@ -9,12 +9,15 @@ const DetailPet = (props) => {
      const [age, setAge] = useState(pet.age)
      const [tab, setTab] = useState(0)
      const {state, dispatch} = useContext(DataContext)
+     const {auth} = state
 
 
      const isActive = (index) => {
       if(tab === index) return "active";
       return ""
      }
+
+     if(!auth.user) return null
 
     return (
         <div>

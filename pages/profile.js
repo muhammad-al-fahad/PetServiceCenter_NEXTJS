@@ -29,16 +29,6 @@ const Profile = () => {
     const [currentdate, setCurrentDate] = useState(0)
     const {name, avatar, password, confirm_password, dateofbirth, contact, address, cnic, bio, designation} = data
 
-    const [latitude, setLatitude] = useState('')
-    const [longitude, setLongitude] = useState('')
-
-     useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            setLatitude(position.coords.latitude)
-            setLongitude(position.coords.longitude)
-        })
-     }, [auth.user])
-
     useEffect(() => {
         if(auth.user) setData({...data, name: auth.user.name, contact: auth.user.contact, address: auth.user.address, cnic: auth.user.cnic, dateofbirth: auth.user.dateofbirth, bio: auth.user.bio, designation: auth.user.designation}) 
     }, [auth.user])
@@ -95,7 +85,7 @@ const Profile = () => {
     const Submit = (props) => {
         props.preventDefault()
         if(password){
-            const errMsg = validation(name, auth.user.email, password, confirm_password, contact, address, cnic, age)
+            const errMsg = validation(name, auth.user.email, password, confirm_password)
             if(errMsg) 
                 return dispatch({ type: 'NOTIFY', payload: {error: errMsg}})
             
@@ -107,8 +97,11 @@ const Profile = () => {
             updateInfor()
         }
 
-        if(age !== auth.user.age || address !== auth.user.address || !longitude || !latitude || contact !== auth.user.contact || cnic !== auth.user.cnic || avatar){
-            if(cnic.length < 15 || cnic.length === 0) return dispatch({ type: 'NOTIFY', payload: {error: "Enter correct CNIC number with correct format!"}})
+        if(age !== auth.user.age || address !== auth.user.address || contact !== auth.user.contact || cnic !== auth.user.cnic || avatar){
+            if(dateofbirth && age === 0) return dispatch({ type: 'NOTIFY', payload: {error: "Enter correct Date of Birth!"}})
+            if(address && address.length < 1) return dispatch({ type: 'NOTIFY', payload: {error: "Address should be of given format!"}})
+            if(contact && contact.length !== 15) return dispatch({ type: 'NOTIFY', payload: {error: "Contact should be of 15 character format!"}})
+            if(cnic && cnic.length !== 15) return dispatch({ type: 'NOTIFY', payload: {error: "CNIC should be of 15 character format!"}})
             basicInfo()
         }
     }
@@ -156,7 +149,7 @@ const Profile = () => {
 
         dispatch({ type: 'NOTIFY', payload: {loading: true}})
 
-        patchData('user/info', {dateofbirth, contact, address, latitude, longitude, cnic, age, bio, designation}, auth.token).then(res => {
+        patchData('user/info', {dateofbirth, contact, address, cnic, age, bio, designation}, auth.token).then(res => {
             if(res.err) return dispatch({ type: 'NOTIFY', payload: {error: res.err}})
 
             dispatch({ type: 'AUTH', payload: {
@@ -224,10 +217,6 @@ const Profile = () => {
                     <div className="form-group my-4">
                     <label htmlFor="address"> Address</label>
                     <input type="text" id="address" className="form-control my-2" placeholder="[House No., Street, Area, City, State]" name='address' value={address} onChange={Handle}/>
-                    <div className='d-flex my-4 justify-content-between'>
-                        <h6>Latitude: {latitude}</h6>
-                        <h6 className='mx-4'>Longitude: {longitude}</h6>
-                    </div>
                     </div>
                     <div className="form-group my-4">
                     <label htmlFor="cnic"> CNIC</label>

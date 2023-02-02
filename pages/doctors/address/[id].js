@@ -5,9 +5,8 @@ import {
     Marker,
     DirectionsRenderer,
   } from '@react-google-maps/api'
-  import { useState, useContext } from 'react'
+  import { useState, useEffect } from 'react'
   import { getData } from '../../../utils/fetchData'
-  import { DataContext } from '../../../redux/store'
   
   const GOOGLE_MAP_API_KEY = "AIzaSyBjXwJ50Pri5nqgzxo-VeKsbUtcERkTMSM"
   
@@ -18,14 +17,22 @@ import {
     })
 
     const [doctor, setDoctor] = useState(props.doctor)
-    const {state, dispatch} = useContext(DataContext)
-    const {auth} = state
+
+    const [latitude, setLatitude] = useState('')
+    const [longitude, setLongitude] = useState('')
+
+    useEffect(() => {
+      navigator.geolocation.getCurrentPosition((position) => {
+          setLatitude(position.coords.latitude)
+          setLongitude(position.coords.longitude)
+      })
+   }, [])
 
     const center = {lat: parseFloat(doctor.latitude), lng: parseFloat(doctor.longitude)}
     const random = {lat: 40.52, lng: 34.34}
   
     const origin = `${doctor.latitude}, ${doctor.longitude}`
-    const desig = `${auth.user && auth.user.latitude}, ${auth.user && auth.user.longitude}`
+    const desig = `${latitude && latitude}, ${longitude && longitude}`
     const random_01 = `${40.52}, ${34.34}`
 
     const [map, setMap] = useState(/** @type google.maps.Map */ (null))
@@ -38,14 +45,14 @@ import {
     }
   
     const calculateRoute = async () => {
-      if (!doctor.latitude && !doctor.longitude || !auth.user.latitude && !auth.user.longitude) {
+      if (!doctor.latitude && !doctor.longitude || !latitude && !longitude) {
         return
       }
       // eslint-disable-next-line no-undef
       const directionsService = new google.maps.DirectionsService()
       const results = await directionsService.route({
         origin: doctor.latitude && doctor.longitude ? origin : random_01,
-        destination: auth.user.latitude && auth.user.longitude ? desig : random_01,
+        destination: latitude && longitude ? desig : random_01,
         // eslint-disable-next-line no-undef
         travelMode: google.maps.TravelMode.DRIVING,
       })

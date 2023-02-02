@@ -21,6 +21,7 @@ export default async (req, res) => {
 
 const getPetID = async (req, res) => {
     try{
+
         const {id} = req.query
 
         const pet = await Pets.findById(id)

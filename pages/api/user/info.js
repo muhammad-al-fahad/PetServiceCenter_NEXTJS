@@ -21,9 +21,9 @@ export default async (req, res) => {
 const updateInfo = async (req, res) => {
     try{
         const result = await auth(req, res)
-        const {name, avatar, dateofbirth, contact, address, latitude, longitude, cnic, age, designation, bio} = req.body
+        const {name, avatar, dateofbirth, contact, address, cnic, age, designation, bio} = req.body
 
-        const newUser = await Users.findOneAndUpdate({_id: result.id}, {name, avatar, dateofbirth, contact, address, latitude, longitude, cnic, age, bio, designation}).select('-password')
+        const newUser = await Users.findOneAndUpdate({_id: result.id}, {name, avatar, dateofbirth, contact, address, cnic, age, bio, designation}).select('-password')
 
         res.json({
             msg: "Update SuccessFull!",
@@ -33,8 +33,6 @@ const updateInfo = async (req, res) => {
                 dateofbirth,
                 contact,
                 address,
-                latitude,
-                longitude,
                 cnic,
                 age,
                 email: newUser.email,
