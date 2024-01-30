@@ -33,7 +33,7 @@ const register = async (req, res) => {
         
         const url = `${baseUrl}/login/${activation_token}`
 
-        sendMail(email, url, "VERIFY EMAIL")
+        sendMail(email, url)
 
         res.json({msg: "Registered SuccessFull! Please Activate Your Email"})
 

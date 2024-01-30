@@ -51,7 +51,7 @@ class APIfeatures {
     filtering(){
         const params = {...this.queryString} // create an object which can store params data that is posted in front end 
 
-        const exclude = ['page', 'sort', 'limit'] // create any array of action where store can activity that is appeared on product data
+        const exclude = ['page', 'sort', 'limit'] // create any array of action where store can perform activity that is appeared on product data
 
         exclude.forEach(field => delete(params[field])) // call each action that is stored in array and where we just secondary delete or (hidden) that product that we never want to view
 

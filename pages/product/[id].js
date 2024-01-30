@@ -44,38 +44,15 @@ const DetailProduct = (props) => {
 
             <div className='col-md-4 mt-3 mx-3'>
               <h2 className='text-uppercase'>{product.title}</h2>
+              <div className='d-flex flex-row'>
               {
-                offers.map(off => (
-                  off.products.map(discount => (
-                    auth.user && auth.user.role === 'membership' && auth.user.membership === off.category && off.duration !== "0" && product._id === discount._id &&
-                    <h6><del className="text-danger" style={{flex:1}}> ${product.price}</del></h6>
-                  ))
-                ))
+                product.discount === 0 ? <h6 className="text-secondary" style={{flex:1}}>${product.price}</h6> :
+                <div>
+                  <del className="text-danger" style={{flex:1}}>${product.price}</del>
+                  <h6 className="text-secondary" style={{flex:1}}>${product.price * (product.discount/100)}</h6>
+                </div>
               }
-              {
-                offers.map(off => (
-                    off.products.map(discount => (
-                        auth.user && auth.user.role === 'membership' && auth.user.membership === off.category && off.duration !== "0" && product._id === discount._id &&
-                        <h6 className="text-danger" style={{flex:1}}> ${product.price - (product.price*off.discount)/100}</h6>
-                    ))
-                ))
-              }
-              {
-                offers.map(off => (
-                      auth.user && auth.user.role === 'membership' && auth.user.membership === off.category && off.duration === "0" &&
-                      <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
-                ))
-              }
-              {
-                  valid !== product._id && auth.user && <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
-              }
-              {
-                  !auth.user && <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
-              }
-              {
-                auth.user && auth.user.role !== 'membership' &&
-                <h6 className="text-danger" style={{flex:1}}> ${product.price}</h6>
-              }
+              </div>
               <div className='row d-flex justify-content-between'>
                 {
                   product.inStock > 0

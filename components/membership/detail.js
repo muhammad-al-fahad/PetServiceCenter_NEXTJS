@@ -53,7 +53,7 @@ const Detail = ({detail, state, dispatch}) => {
                             { user.membership !== member.category &&
                                 <div className='p-4'>
                                     <h2 className='mb-4 text-uppercase'>Total: ${member.price}</h2>
-                                    {/* <PaypalMember members={member}/> */}
+                                    <PaypalMember members={member}/>
                                     <StripeMember members= {member} users= {user}/>
                                 </div>
                             }

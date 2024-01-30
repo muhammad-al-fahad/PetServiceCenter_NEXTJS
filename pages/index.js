@@ -33,6 +33,7 @@ const Home = () => {
 
     useEffect(() => {
         setDetail(member)
+        console.log(detail);
     }, [member, auth.user])
 
     const Handle = (props) => {
@@ -274,36 +275,41 @@ const Home = () => {
                 <button className='btn btn-dark w-25' style={{marginLeft: '30%'}}><Link href="/doctors"><a style={{textDecoration: 'none', color: 'white'}}> View Doctors </a></Link></button>
             </div>
             <div>
-                <h2 className='my-4 col-md-4 offset-md-5 text-uppercase'> Membership Status </h2>
-                <div>
-                    {offers.length !== 0 && <img src={offers[0].poster} alt={offers[0].poster} width="80%" height="300px" style={{ objectFit: 'cover' }} />}
-                </div>
+                {offers.length !== 0 && 
+                    <div>
+                        <h2 className='my-4 col-md-4 offset-md-5 text-uppercase'> Membership Status </h2>
+                        <img src={offers[0].poster} alt={offers[0].poster} width="80%" height="300px" style={{ objectFit: 'cover' }} />
+                    </div>
+                }
             </div>
-            <div className="d-block">
-                <h2 className='my-4 col-md-4 offset-md-5 text-uppercase'> Membership </h2>
-                <div className='membership'>
-                    { detail.length !== 0 && detail && detail.map(item => (
-                        <div key={item._id} className="card" style={{width: '27rem', marginLeft: '30px'}}>
-                            <img src={item.image} className = "card-img-top" alt = {item.image}/>
-                            <div className="card-body">
-                                <h5 className="card-title text-capitalize" title={item.title}>{item.title}</h5>
-                                
-                                <h6 className="text-danger" style={{flex:1}}> ${item.price}/{item.day}</h6>
+            <div className="d-block">   
+                { detail.length > 0 && 
+                    <div className='membership'>
+                        <h2 className='my-4 col-md-4 offset-md-5 text-uppercase'> Membership </h2>
+                        {
+                            detail.map(item => (
+                                <div key={item._id} className="card" style={{width: '27rem', marginLeft: '30px'}}>
+                                    <img src={item.image} className = "card-img-top" alt = {item.image}/>
+                                    <div className="card-body">
+                                        <h5 className="card-title text-capitalize" title={item.title}>{item.title}</h5>
+                                        
+                                        <h6 className="text-danger" style={{flex:1}}> ${item.price}/{item.day}</h6>
 
-                                <p className="card-text" title={item.description}>{item.description}</p>
+                                        <p className="card-text" title={item.description}>{item.description}</p>
 
-                                <div className="column justify-content-start my-0">
-                                    {item.types && typesLink(item)}
-                                </div>            
-                            </div>
+                                        <div className="column justify-content-start my-0">
+                                            {item.types && typesLink(item)}
+                                        </div>            
+                                    </div>
 
-                            <div className="row justify-content-between mx-1 my-4">
-                                <button className='btn btn-dark w-50' style={{marginLeft: '20%'}}><Link href={`/memberships/${item._id}`}><a style={{textDecoration: 'none', color: 'white'}}> Proceed Payment </a></Link></button>
-                            </div>
-                        </div>
-                    ))
-                    }
-                </div>
+                                    <div className="row justify-content-between mx-1 my-4">
+                                        <button className='btn btn-dark w-50' style={{marginLeft: '20%'}}><Link href={`/memberships/${item._id}`}><a style={{textDecoration: 'none', color: 'white'}}> Proceed Payment </a></Link></button>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                }
             </div>
         </div>
     )

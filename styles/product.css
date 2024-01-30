@@ -1,12 +1,12 @@
 .product {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    justify-content: center;
+    grid-template-columns: repeat(4, 1fr);
     margin: 20px 0;
 }
 
 .product .card {
     margin: 10px auto;
+    width: 400px;
 }
 
 .product .card-img-top {

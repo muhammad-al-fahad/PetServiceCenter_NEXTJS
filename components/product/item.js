@@ -48,7 +48,7 @@ const Items = ({product, validate, Check}) => {
     }
 
     return(
-        <div className="card" style={{width: '20rem'}}>
+        <div className="card">
             {
                 auth.user && auth.user.role === 'admin' &&
                 <input type='checkbox' checked={product.checked} className='position-absolute' style={{width: '20px', height: '20px'}} onChange={() => Check(product._id)}/>

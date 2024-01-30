@@ -44,6 +44,7 @@ const { cart, auth } = state
 
 useEffect(() => {
   const firstLogin = localStorage.getItem('firstLogin')
+  
   if(firstLogin){
     getData('auth/token').then(res => {
         if(res.err)
@@ -354,5 +355,4 @@ useEffect(() => {
           {children}
         </DataContext.Provider>
     )
-
 }

@@ -68,7 +68,7 @@ const Cart = () => {
 
   const getTotal = () => {
     const res = cart.reduce((prev, item) => {
-        return prev + (item.price * item.quantity)
+      return prev + (item.price * item.quantity)
     }, 0)
     setTotal(res)
   }
@@ -76,10 +76,10 @@ const Cart = () => {
   const updateCart = async (req, resp) => {
     for(const item of req){
        const res = await getData(`product/${item._id}`)
-       const {_id, title, images, inStock, membership, price, discount, sold} = res.product
+       const {_id, title, images, inStock, price, discount, sold} = res.product
 
         if(inStock > 0){
-            resp.push({_id, title, images, inStock, price: auth.user && auth.user.role === 'membership' && auth.user.membership === membership ? discount : !auth.user ? price : price, sold, quantity: item.quantity > inStock ? 1 : item.quantity})
+            resp.push({_id, title, images, inStock, price: discount === 0 ? price :  price * (discount/100), sold, quantity: item.quantity > inStock ? 1 : item.quantity})
         }
     }
     dispatch({type: 'ADD_CART', payload: resp})

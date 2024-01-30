@@ -1,38 +1,49 @@
 import mailer from 'nodemailer'
 import { google } from 'googleapis'
 
-const { OAuth2 } = google.auth
+const { OAuth2 } = google.auth;
+
+const {
+    CLIENT_ID,
+    CLIENT_SECRET,
+    CLIENT_REFRESH_TOKEN,
+    OAUTH_PLAYGROUND,
+    SENDER_MAIL
+} = process.env
 
 const oauth2Client = new OAuth2(
-    process.env.CLIENT_ID,
-    process.env.CLIENT_SECRET,
-    process.env.CLIENT_REFRESH_TOKEN,
-    process.env.OAUTH_PLAYGROUND
+    CLIENT_ID,
+    CLIENT_SECRET,
+    CLIENT_REFRESH_TOKEN,
+    OAUTH_PLAYGROUND
 )
 
-const Email = (to, url, text) => {
+const Email = (to, url) => {
 
     oauth2Client.setCredentials({
-        refresh_token: process.env.CLIENT_REFRESH_TOKEN
+        refresh_token: CLIENT_REFRESH_TOKEN
     })
 
     const accessToken = oauth2Client.getAccessToken()
 
     const STMPTransport = mailer.createTransport({
         service: 'gmail',
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
         auth: {
             type: 'OAuth2',
-            user: process.env.SENDER_MAIL,
-            clientId: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET,
-            refreshToken: process.env.CLIENT_REFRESH_TOKEN,
+            user: SENDER_MAIL,
+            clientId: CLIENT_ID,
+            clientSecret: CLIENT_SECRET,
+            refreshToken: CLIENT_REFRESH_TOKEN,
             accessToken
         }
     })
 
     const mailOptions = {
-        from: process.env.SENDER_MAIL,
-        to: to,
+        from: SENDER_MAIL,
+        to,
         subject: "Pets Service Center",
         html: ` 
         <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
@@ -42,16 +53,15 @@ const Email = (to, url, text) => {
                 Just click the button below to validate your email address.
             </p>
             
-            <a href=${url} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin-left: 40%; margin-right: 40%; display: inline-block;">${text}</a>
+            <a href=${url} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin-left: 40%; margin-right: 40%; display: inline-block;">Verify Email</a>
         </div>
       `
     }
 
     STMPTransport.sendMail(mailOptions, (err, res) => {
-        if(err) return err
-        return res
+        if(err) return err;
+        return res;
     })
-    
 }
 
 export default Email

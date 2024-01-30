@@ -8,9 +8,11 @@ function MyApp({ Component, pageProps }) {
   return (
     <DataProvider>
         <Layout>
-        <GoogleOAuthProvider clientId="557184705297-s74ars7nu4dgcg50fkr496ivngnnipgi.apps.googleusercontent.com">
-          <Component {...pageProps}/>
-        </GoogleOAuthProvider>
+          <GoogleOAuthProvider clientId="557184705297-s74ars7nu4dgcg50fkr496ivngnnipgi.apps.googleusercontent.com">
+            <div style={{minHeight: '50vh'}}>
+              <Component {...pageProps}/>
+            </div>
+          </GoogleOAuthProvider>
         </Layout>
         <Footer/>
     </DataProvider>

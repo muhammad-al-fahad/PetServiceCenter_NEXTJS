@@ -33,7 +33,7 @@ const forgot = async (req, res) => {
 
         const url = `${baseUrl}/password/${access_token}`
 
-        sendMail(email, url, "VERIFY EMAIL")
+        sendMail(email, url)
 
         res.json({
             msg: "Check Your Email! Send the reset passowrd form.",

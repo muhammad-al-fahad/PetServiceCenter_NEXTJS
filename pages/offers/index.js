@@ -153,7 +153,7 @@ const Delete_All = () => {
                 </div>
             }
 
-            <div className = "offer">
+            <div className = "offer" style={{flexGrow: 1}}>
                 {
                 offer.length === 0?
                 <h2 className='my-4 mx-2'> No Offers </h2> :

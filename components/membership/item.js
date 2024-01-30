@@ -47,6 +47,8 @@ const Items = ({users, members, state, dispatch}) => {
         if(finalDay) return users.duration = `${finalDay} Days`
     }
 
+    console.log(users);
+
     const UpdateDuration = async () => { 
         
         const res = await putData(`membership/duration/${members._id}`, {duration: users.duration, token: users.id}, auth.token)
@@ -60,7 +62,7 @@ const Items = ({users, members, state, dispatch}) => {
 
     useEffect (() => {
         UpdateDuration()
-        if(users.duration === "0" && users.role === 'membership') UpdateMembership()
+        if(users.duration === "0" && users.role === 'membership') UpdateMembership();
     }, [Date.now])
 
     useEffect(() => {

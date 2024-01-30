@@ -47,7 +47,7 @@ const updateMember = async (req, res) => {
             return res.status(400).json({err: "Please fill all the fields"})
 
         const member = await Memberships.findOneAndUpdate({_id: id}, {
-            title, image, description, category, duration, price, types
+            title, image, description, category, price, types
         })
 
         member && types && types.map(async (type) => {

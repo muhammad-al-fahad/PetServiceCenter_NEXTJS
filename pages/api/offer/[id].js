@@ -52,7 +52,7 @@ const updateOffer = async (req, res) => {
             const {price} = finali
 
             await Products.findOneAndUpdate({_id: pro._id}, {
-                discount: price - (price * discount)/100, membership: category
+                discount, membership: category
             })
 
         })

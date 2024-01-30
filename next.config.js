@@ -15,9 +15,9 @@ module.exports = {
     "GOOGLE_SECRET": "G\zx?3j$v;E_L<O0nue&{:K_-^r`#n;Y:cc7*;WtCO'\zVg.yf:BA^&i;Z_~/",
     "FACEBOOK_SECRET": "0w'#-X)w9_)-8mhRxl/}p{6_;UlHFtYJ?rHu{}V/C>nSsUQRZ*H,yoQ2~+C.",
     "OAUTH_PLAYGROUND": "https://developers.google.com/oauthplayground",
-    "CLIENT_ID": "559117978633-dnhfa75m828a3mb9fr02trs7hl5hsabv.apps.googleusercontent.com",
-    "CLIENT_SECRET": "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",
-    "CLIENT_REFRESH_TOKEN": "1//04fknFfpITuAUCgYIARAAGAQSNwF-L9IroGL4HPfcjvydlhLyp4RbCzMuIegh4KOd2YWlaJEdIxbZwf6_4STVRDmIqujKzKOmifc",
-    "SENDER_MAIL": "sp19-bse-126@cuilahore.edu.pk"
+    "CLIENT_ID": "932471460247-ln6gib1r562fvrb2faee0p3180nv6ria.apps.googleusercontent.com",
+    "CLIENT_SECRET": "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",
+    "CLIENT_REFRESH_TOKEN": "1//04LWNCaYix8H5CgYIARAAGAQSNwF-L9Ir6dI7LLihnxgQc2t3z2Ix4Qt26pGB3JsdWUu-j_Rs7uIukAriVhxKDXSpMjm_YyCXQws",
+    "SENDER_MAIL": "alfahad7240@gmail.com"
   }
 }
